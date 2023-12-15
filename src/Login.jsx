@@ -15,7 +15,6 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           return res.json();
-
         })
         .then((res) => {
           //console.log(resp);
