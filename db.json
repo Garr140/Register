@@ -15,6 +15,30 @@
       "password": "123456",
       "confirmPassword": "123456",
       "id": 2
+    },
+    {
+      "name": "Roger",
+      "secondname": "Puga",
+      "email": "roger@ancoradual.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "id": 3
+    },
+    {
+      "name_": "",
+      "secondname": "Puga",
+      "email": "roger@ancoradual2.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "id": 4
+    },
+    {
+      "name_": "Roger",
+      "secondname": "Puga",
+      "email": "roger@ancoradual3.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "id": 5
     }
   ]
 }
