@@ -1,63 +1,21 @@
-import { useState } from "react";
+
 import logo from "./assets/react.svg";
 import { Link } from "react-router-dom";
+
+// hooks
+import useUser from "./hooks/useUser";
 
 // const navigate = useNavigate;
 
 const Login = () => {
-  const [email, EmailUpdate] = useState("");
-  const [password, PasswordUpdate] = useState("");
 
-  const ProceedLogin = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      fetch("http://localhost:8000/user/?email=" + email)
-        .then((res) => {
-          console.log(res);
-          return res.json();
-
-        })
-        .then((res) => {
-          //console.log(resp);
-          if (Object.keys(res).lenght === 0) {
-            alert("Please enter valid email");
-          } // else {
-          //     if (resp.password === password) {
-          //       alert("success");
-          //       navigate("/home");
-          //     } else {
-          //       alert("Please enter valid password");
-          //     }
-          //   }
-
-          alert("success");
-        })
-        .catch((err) => {
-          console.log("Login failed due to: " + err.message);
-          alert("Login failed due to: " + err.message);
-        });
-    }
-  };
-
-  const validate = () => {
-    let result = true;
-    if (email === "" || email === null) {
-      result = false;
-      alert("Please enter your email");
-    }
-    if (password === "" || password === null) {
-      result = false;
-      alert("Please enter your password");
-    }
-
-    return result;
-  };
+  const {setLogin, handleInput, getLogin} = useUser();
 
   return (
     <div className=" grid-rows-16 w-screen h-screen fixed text-center">
       <form
         className=" shadow-md rounded grid-rows-16 mx-auto text-center my-auto bg-sky-100 w-fit p-4 mt-[25vh]"
-        onSubmit={ProceedLogin}
+        onSubmit={setLogin}
       >
         <img
           className="py 8 animate-spin mx-auto h-10 w-auto"
@@ -72,8 +30,9 @@ const Login = () => {
         <input
           className="border-inherit border-solid border-2 rounded w-80 text-center"
           type="email"
-          value={email}
-          onChange={(e) => EmailUpdate(e.target.value)}
+          value={getLogin.email}
+          name="email"
+          onChange={(e) => handleInput(e)}
         />
 
         <br />
@@ -83,8 +42,9 @@ const Login = () => {
         <input
           className="border-inherit border-solid border-2 rounded w-80 text-center"
           type="password"
-          value={password}
-          onChange={(e) => PasswordUpdate(e.target.value)}
+          value={getLogin.password}
+          name="password"
+          onChange={(e) => handleInput(e)}
         />
 
         <div className="bg-sky-100 pt-10 pb-5">
