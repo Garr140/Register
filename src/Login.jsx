@@ -11,13 +11,15 @@ const Login = () => {
   const ProceedLogin = (e) => {
     e.preventDefault();
     if (validate()) {
-      fetch("http://localhost:8000/user" + email)
+      fetch("http://localhost:8000/user/?email=" + email)
         .then((res) => {
+          console.log(res);
           return res.json();
+
         })
-        .then((resp) => {
+        .then((res) => {
           //console.log(resp);
-          if (Object.keys(resp).lenght === 0) {
+          if (Object.keys(res).lenght === 0) {
             alert("Please enter valid email");
           } // else {
           //     if (resp.password === password) {
@@ -27,9 +29,12 @@ const Login = () => {
           //       alert("Please enter valid password");
           //     }
           //   }
+
+          alert("success");
         })
         .catch((err) => {
           console.log("Login failed due to: " + err.message);
+          alert("Login failed due to: " + err.message);
         });
     }
   };
